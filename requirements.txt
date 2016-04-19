@@ -1,0 +1,5 @@
+cachetools==1.1.6
+hammock==0.2.4
+marshmallow==2.7.1
+py==1.4.31
+pytest==2.9.1
