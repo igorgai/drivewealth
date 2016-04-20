@@ -25,7 +25,7 @@ class TestApi(TestCase):
         self.api = None
 
     def test_create_session(self):
-        self.api._create_session(self.username, self.password)
+        self.api.create_session(self.username, self.password)
         self.assertIsNotNone(self.api.session_key)
         self.assertIsNotNone(self.api.user_id)
         self.assertIsNotNone(self.api.accounts)
