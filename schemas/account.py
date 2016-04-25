@@ -1,33 +1,6 @@
-from .schema_base import BaseSchema
+from .base import BaseSchema
 
 from marshmallow import fields, post_load, Schema
-
-from decimal import Decimal
-
-
-class InstrumentDataSchema(Schema):
-    # Can't inherit from BaseSchema because marshmallow throws an exception
-    fifty_two_week_low_price = fields.Decimal(load_from='fiftyTwoWeekLowPrice')
-
-    @post_load()
-    def post_load(self, data):
-        return BaseSchema.create_object('InstrumentData', data)
-
-
-class InstrumentSchema(BaseSchema):
-    instrument_id = fields.UUID(load_from='instrumentID')
-    name = fields.String()
-    symbol = fields.String()
-    exchange_id = fields.String(load_from='exchangeID')
-    trade_status = fields.Integer(load_from='tradeStatus')
-    long_only = fields.Boolean(load_from='longOnly')
-    prior_close = fields.Decimal(load_from='priorClose')
-    order_size_maximum = fields.Decimal(load_from='orderSizeMax')
-    order_size_minimum = fields.Decimal(load_from='orderSizeMin')
-    order_size_step = fields.Decimal(load_from='orderSizeStep')
-    rate_ask = fields.Decimal(load_from='rateAsk')
-    rate_bid = fields.Decimal(load_from='rateBid')
-    data = fields.Nested(InstrumentDataSchema, load_from='fundamentalDataModel')  # required=False
 
 
 class OrderSchema(Schema):
@@ -96,43 +69,3 @@ class UserSchema(BaseSchema):
     username = fields.String(load_from='username')
     first_name = fields.String(load_from='firstName')
     last_name = fields.String(load_from='lastName')
-
-
-def create_object_from_json_response(object_name, res, many=False):
-    '''
-    Creates an object with the name `object_name` from an API
-    response (assumes that the response has valid JSON attached to it).
-    '''
-    res.raise_for_status()
-
-    schema_class = _get_schema_class(object_name)
-    schema = schema_class(object_name, many=many)
-
-    user_data = res.json(parse_float=Decimal)
-    result = schema.load(user_data)
-
-    return result.data
-
-
-def _get_schema_class(object_name):
-    '''
-    Basically a factory method to get the appropriate schema class
-    based on the object_name.
-    '''
-    # Key is the name of the object, value is the schema class
-    schema_dict = {
-        'Session': SessionSchema,
-        'User': UserSchema,
-        'Account': AccountSchema,
-        'Order': OrderSchema,
-        'Position': PositionSchema,
-        'Instrument': InstrumentSchema,
-        'InstrumentData': InstrumentDataSchema,
-    }
-
-    schema_class = schema_dict.get(object_name)
-
-    if not schema_class:
-        raise Exception('Invalid object_name passed in: "%s"' % object_name)
-
-    return schema_class

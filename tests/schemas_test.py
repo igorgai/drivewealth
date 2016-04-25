@@ -1,4 +1,4 @@
-from ..schemas import _get_schema_class, create_object_from_json_response
+from ..schemas.base import _get_schema_class, create_object_from_json_response
 
 from unittest import TestCase
 
