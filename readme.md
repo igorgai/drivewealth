@@ -4,8 +4,14 @@ Provides a Pythonic wrapper around the DriveWealth REST API (documentation locat
 ## 
 
 # Run all tests (unit and integration)
+First, update pytest.ini with the DriveWealth username and password.
 ```
-py.test --username=DRIVEWEALTH_USERNAME --password=DRIVEWEALTH_PASSWORD
+addopts = --durations=3 --username=DRIVEWEALTH_USERNAME --password=DRIVEWEALTH_PASSWORD
+```
+
+Then, run the following command:
+```
+python setup.py test
 ```
 
 ## Colophon
