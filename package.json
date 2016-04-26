@@ -1,0 +1,17 @@
+{
+    "name": "drivewealth",
+    "description": "Provides a Pythonic wrapper around the DriveWealth REST API",
+    "install_requires": [
+        "cachetools==1.1.6",
+        "hammock==0.2.4",
+        "marshmallow==2.7.0"
+    ],
+    "test_suite": "pytest-runner",
+    "tests_require": [
+        "pytest==2.6.4"
+    ],
+    "setup_requires": [
+        "setuptools_scm>=1.9",
+        "pytest-runner==2.7.0"
+    ]
+}
