@@ -7,6 +7,7 @@ Borrowed almost wholesale from Armstrong http://armstrongcms.org/
 
 from setuptools import setup, find_packages
 import json
+import sys
 
 info = json.load(open("package.json"))
 
@@ -48,4 +49,10 @@ setup_kwargs = {
 }
 
 setup_kwargs.update(info)
+
+needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
+
+if needs_pytest:
+    setup_kwargs["setup_requires"].append("pytest-runner==2.7.0")
+
 setup(**setup_kwargs)
