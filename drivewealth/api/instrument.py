@@ -33,5 +33,5 @@ class InstrumentApiMixin:
 
         try:
             return create_object_from_json_response('Instrument', res, many=False)
-        except HTTPError, e:
+        except HTTPError as e:
             raise InstrumentNotFoundError(e, instrument_id)

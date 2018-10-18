@@ -19,7 +19,7 @@ class BaseSchema(Schema):
 
     @staticmethod
     def create_object(object_name, data):
-        fields = data.keys()
+        fields = list(data.keys())
         o = namedtuple(object_name, fields)
         return o(**data)
 

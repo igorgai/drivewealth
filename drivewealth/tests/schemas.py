@@ -18,31 +18,31 @@ class TestGetSchemaClass(TestCase):
 class TestCreateObjectFromJsonResponse(TestCase):
     class FakeResponse(object):
         data = {
-            u'languageID': u'en_US',
-            u'rebateCfdValue': 0,
-            u'rebateEquityValue': 0,
-            u'lastLoginWhen': u'2016-04-13T18:19:41.066Z',
-            u'wlpID': u'DW',
-            u'statementPrint': False,
-            u'createdWhen': u'2016-04-05T17:34:26.801Z',
-            u'avatarUrl': u'https://secure.gravatar.com/avatar/bill.jpg',
-            u'userID': u'9875cfd1-07e9-4647-8e7e-8c781269a4d3',
-            u'sessionKey': u'1782cfd1-07l9-4647-8e7e-8c926071a4d9.2016-04-13T18:19:40.736Z',
-            u'emailAddress1': u'bill@mailinator.com',
-            u'referralCode': u'REF',
-            u'username': u'testusername',
-            u'rebateFxValue': 0,
-            u'usCitizen': False,
-            u'brandAmbassador': False,
-            u'displayName': u'Bill',
-            u'firstName': u'Bill',
-            u'lastName': u'Smith',
-            u'updatedWhen': u'2016-04-05T17:34:26.801Z',
-            u'commissionRate': 2.99,
-            u'confirmPrint': False,
-            u'coinBalance': 0,
-            u'status': 1,
-            u'countryID': "US",
+            'languageID': 'en_US',
+            'rebateCfdValue': 0,
+            'rebateEquityValue': 0,
+            'lastLoginWhen': '2016-04-13T18:19:41.066Z',
+            'wlpID': 'DW',
+            'statementPrint': False,
+            'createdWhen': '2016-04-05T17:34:26.801Z',
+            'avatarUrl': 'https://secure.gravatar.com/avatar/bill.jpg',
+            'userID': '9875cfd1-07e9-4647-8e7e-8c781269a4d3',
+            'sessionKey': '1782cfd1-07l9-4647-8e7e-8c926071a4d9.2016-04-13T18:19:40.736Z',
+            'emailAddress1': 'bill@mailinator.com',
+            'referralCode': 'REF',
+            'username': 'testusername',
+            'rebateFxValue': 0,
+            'usCitizen': False,
+            'brandAmbassador': False,
+            'displayName': 'Bill',
+            'firstName': 'Bill',
+            'lastName': 'Smith',
+            'updatedWhen': '2016-04-05T17:34:26.801Z',
+            'commissionRate': 2.99,
+            'confirmPrint': False,
+            'coinBalance': 0,
+            'status': 1,
+            'countryID': "US",
         }
 
         def __init__(self, data=data):
@@ -63,8 +63,8 @@ class TestCreateObjectFromJsonResponse(TestCase):
 
     def test_create_object_from_invalid_json_response(self):
         data = {
-            u'status': "asdf",
-            u'countryID': "US",
+            'status': "asdf",
+            'countryID': "US",
         }
         res = self.FakeResponse(data=data)
 
